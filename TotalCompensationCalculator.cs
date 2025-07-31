@@ -12,7 +12,7 @@ namespace TotalCompensationCalculator
     public class JobMeta
     {
         [JsonPropertyName("job")]
-        public string Job { get; set; }
+        public string Job { get; set; } = string.Empty;
         
         [JsonPropertyName("rate")]
         public decimal Rate { get; set; }
@@ -24,52 +24,52 @@ namespace TotalCompensationCalculator
     public class TimePunch
     {
         [JsonPropertyName("job")]
-        public string Job { get; set; }
+        public string Job { get; set; } = string.Empty;
         
         [JsonPropertyName("start")]
-        public string Start { get; set; }
+        public string Start { get; set; } = string.Empty;
         
         [JsonPropertyName("end")]
-        public string End { get; set; }
+        public string End { get; set; } = string.Empty;
     }
 
     public class EmployeeData
     {
         [JsonPropertyName("employee")]
-        public string Employee { get; set; }
+        public string Employee { get; set; } = string.Empty;
         
         [JsonPropertyName("timePunch")]
-        public List<TimePunch> TimePunch { get; set; }
+        public List<TimePunch> TimePunch { get; set; } = new();
     }
 
     public class PayrollData
     {
         [JsonPropertyName("jobMeta")]
-        public List<JobMeta> JobMeta { get; set; }
+        public List<JobMeta> JobMeta { get; set; } = new();
         
         [JsonPropertyName("employeeData")]
-        public List<EmployeeData> EmployeeData { get; set; }
+        public List<EmployeeData> EmployeeData { get; set; } = new();
     }
 
     public class EmployeeResult
     {
         [JsonPropertyName("employee")]
-        public string Employee { get; set; }
+        public string Employee { get; set; } = string.Empty;
         
         [JsonPropertyName("regular")]
-        public string Regular { get; set; }
+        public string Regular { get; set; } = string.Empty;
         
         [JsonPropertyName("overtime")]
-        public string Overtime { get; set; }
+        public string Overtime { get; set; } = string.Empty;
         
         [JsonPropertyName("doubletime")]
-        public string Doubletime { get; set; }
+        public string Doubletime { get; set; } = string.Empty;
         
         [JsonPropertyName("wageTotal")]
-        public string WageTotal { get; set; }
+        public string WageTotal { get; set; } = string.Empty;
         
         [JsonPropertyName("benefitTotal")]
-        public string BenefitTotal { get; set; }
+        public string BenefitTotal { get; set; } = string.Empty;
     }
 
     public class PayrollCalculator
@@ -179,11 +179,16 @@ namespace TotalCompensationCalculator
         {
             try
             {
-                // Read the data file
+                // Read the data file - look in the same directory as the executable
                 var jsonContent = File.ReadAllText("clean_data.json");
 
                 // Parse it
                 var payrollData = JsonSerializer.Deserialize<PayrollData>(jsonContent);
+                
+                if (payrollData?.JobMeta == null || payrollData?.EmployeeData == null)
+                {
+                    throw new Exception("Invalid JSON data - missing required fields");
+                }
                 
                 // Do the calculations
                 var calculator = new PayrollCalculator(payrollData.JobMeta);

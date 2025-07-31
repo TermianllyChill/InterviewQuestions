@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TotalCompensationCalculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8236aa9ba5e2d2a09afdbc57df5ccead3a3292ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+405897562e70e0e333863ed93d6f68b57e4121ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("TotalCompensationCalculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TotalCompensationCalculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
