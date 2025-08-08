@@ -28,5 +28,5 @@ Employees may:
 
 ```bash
 git clone https://github.com/TermianllyChill/InterviewQuestions.git
-cd InterviewQuestions/PunchLogicTest
+cd InterviewQuestions
 dotnet run
